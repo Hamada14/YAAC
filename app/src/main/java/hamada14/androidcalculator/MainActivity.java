@@ -9,23 +9,23 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import hamada14.androidcalculator.calculator.Calculator;
+import hamada14.androidcalculator.calculator.ExpressionSolver;
+import hamada14.androidcalculator.tokenization.Tokenizer;
+
 public class MainActivity extends AppCompatActivity {
+
+    private Calculator calculator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
+        calculator = new Calculator(new ExpressionSolver(), new Tokenizer());
     }
 
     @Override

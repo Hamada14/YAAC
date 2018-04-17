@@ -18,7 +18,7 @@
     <string name="button_addition">+</string>
     <string name="button_subtraction">-</string>
     <string name="button_exponent">^</string>
-    <string name="button_square_root">√</string>
+    <string name="button_mod">%</string>
     <string name="button_backspace">⌫</string>
     <string name="button_reset">CE</string>
 
