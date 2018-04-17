@@ -28,4 +28,14 @@ public class ExpressionSolverUnitTest {
         ExpressionSolver solver = new ExpressionSolver();
         Assert.assertEquals("0.222", solver.solveExpression(tokens));
     }
+
+    @Test
+    public void complexCase2() {
+        List<Token> tokens = Arrays.asList(new Token('1'), new Token('-'), new Token('7'),
+                new Token('/'), new Token('('), new Token('3'), new Token('^'),
+                new Token('2'), new Token(')'));
+
+        ExpressionSolver solver = new ExpressionSolver();
+        Assert.assertEquals("0.222", solver.solveExpression(tokens));
+    }
 }

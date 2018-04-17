@@ -39,9 +39,10 @@ public class ExpressionSolver {
                     while(!st.isEmpty() && st.peek().getInputType() != CalculatorInput.OPEN_BRACKET) {
                         output.add(st.pop());
                     }
-                    if(!st.isEmpty() && st.peek().getInputType() == CalculatorInput.OPEN_BRACKET) {
+                    if(!st.isEmpty() && st.peek().getInputType() != CalculatorInput.OPEN_BRACKET) {
                         throw new InvalidParameterException();
                     }
+                    st.pop();
                 }
             } else {
                 while(!st.isEmpty() && currentToken.getInputType().getPrecedence() <=

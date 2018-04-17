@@ -13,9 +13,6 @@ import hamada14.androidcalculator.tokenization.Tokenizer;
 
 public class Calculator {
 
-    private final ExpressionSolver expressionSolver;
-    private final List<Character> equation;
-
     private final static Set<Character> VALID_CHARACTERS;
 
     static {
@@ -26,6 +23,8 @@ public class Calculator {
         VALID_CHARACTERS = new HashSet<>(validCharactersArray);
     }
 
+    private final ExpressionSolver expressionSolver;
+    private final List<Character> equation;
     private final Tokenizer tokenizer;
 
     public Calculator(final ExpressionSolver expressionSolver, final Tokenizer tokenizer) {
@@ -36,7 +35,30 @@ public class Calculator {
 
     public String solveExpression() {
         List<Token> tokens = tokenizer.tokenize(getExpression());
-        return expressionSolver.solveExpression(tokens);
+        String result = expressionSolver.solveExpression(tokens);
+        result = normalizeResult(result);
+        equation.clear();
+        for (int i = 0; i < result.length(); i++)
+            equation.add(result.charAt(i));
+        return result;
+    }
+
+    public String getExpression() {
+        return equation.stream().map(String::valueOf).collect(Collectors.joining());
+    }
+
+    private String normalizeResult(String denormalizedResult) {
+        String frac = denormalizedResult.substring(denormalizedResult.length() - 4);
+        int i = denormalizedResult.length() - 1;
+        while (denormalizedResult.charAt(i) == '0') {
+            i--;
+        }
+        if (denormalizedResult.charAt(i) == '.')
+            i--;
+        StringBuilder sb = new StringBuilder();
+        for (int j = 0; j <= i; j++)
+            sb.append(denormalizedResult.charAt(j));
+        return sb.toString();
     }
 
     public void addCharacter(CalculatorInput input) {
@@ -47,6 +69,10 @@ public class Calculator {
         equation.add(val);
     }
 
+    private boolean validCharacter(final char x) {
+        return VALID_CHARACTERS.contains(x);
+    }
+
     public void removeCharacter() {
         if (!equation.isEmpty()) {
             equation.remove(equation.size() - 1);
@@ -55,13 +81,5 @@ public class Calculator {
 
     public void reset() {
         equation.clear();
-    }
-
-    public String getExpression() {
-        return equation.stream().map(String::valueOf).collect(Collectors.joining());
-    }
-
-    private boolean validCharacter(final char x) {
-        return VALID_CHARACTERS.contains(x);
     }
 }

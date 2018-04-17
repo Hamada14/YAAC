@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidCalculator</string>
+    <string name="app_name">CalculateIt</string>
     <string name="action_settings">Settings</string>
 
     <string name="button_0">0</string>

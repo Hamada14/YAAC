@@ -61,8 +61,10 @@ public class CalculatorUnitTest {
         verify(tokenizer).tokenize(intermedResult);
         verify(solver).solveExpression(tokens);
 
+        Assert.assertEquals(expectedResult, calculator.getExpression());
 
         calculator.reset();
+
         Assert.assertEquals("", calculator.getExpression());
     }
 }

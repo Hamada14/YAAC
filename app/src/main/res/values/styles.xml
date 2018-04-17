@@ -23,7 +23,7 @@
     </style>
 
     <style name="NumberButton" parent="CalculatorButton">
-        <item name="android:background">@color/colorSecondary</item>
+        <item name="android:background">@drawable/secondary_button_selector</item>
     </style>
 
     <style name="LargeNumberButton" parent="NumberButton">
@@ -31,7 +31,7 @@
     </style>
 
     <style name="OperationButton" parent="CalculatorButton">
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@drawable/primary_button_selector</item>
     </style>
 
     <style name="LargeOperationButton" parent="OperationButton">
